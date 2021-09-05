@@ -1,0 +1,60 @@
+[2021-08-20 12:11:50,794] Kurobokkusu/CRITICAL/locust.web: Unhandled exception in greenlet: <Greenlet at 0x7f672f39b590: <bound method WebUI.start_server of <locust.web.WebUI object at 0x7f672f305f10>>>
+Traceback (most recent call last):
+  File "src/gevent/greenlet.py", line 906, in gevent._gevent_cgreenlet.Greenlet.run
+  File "/home/kim/.local/lib/python3.8/site-packages/locust/web.py", line 349, in start_server
+    self.server.serve_forever()
+  File "/home/kim/.local/lib/python3.8/site-packages/gevent/baseserver.py", line 398, in serve_forever
+    self.start()
+  File "/home/kim/.local/lib/python3.8/site-packages/gevent/baseserver.py", line 336, in start
+    self.init_socket()
+  File "/home/kim/.local/lib/python3.8/site-packages/gevent/pywsgi.py", line 1545, in init_socket
+    StreamServer.init_socket(self)
+  File "/home/kim/.local/lib/python3.8/site-packages/gevent/server.py", line 180, in init_socket
+    self.socket = self.get_listener(self.address, self.backlog, self.family)
+  File "/home/kim/.local/lib/python3.8/site-packages/gevent/server.py", line 192, in get_listener
+    return _tcp_listener(address, backlog=backlog, reuse_addr=cls.reuse_addr, family=family)
+  File "/home/kim/.local/lib/python3.8/site-packages/gevent/server.py", line 288, in _tcp_listener
+    sock.bind(address)
+  File "/home/kim/.local/lib/python3.8/site-packages/gevent/_socketcommon.py", line 563, in bind
+    return self._sock.bind(address)
+OSError: [Errno 98] Address already in use: ('', 8089)
+[2021-08-20 12:13:04,147] Kurobokkusu/CRITICAL/locust.web: Unhandled exception in greenlet: <Greenlet at 0x7fcfbd40c590: <bound method WebUI.start_server of <locust.web.WebUI object at 0x7fcfbd374eb0>>>
+Traceback (most recent call last):
+  File "src/gevent/greenlet.py", line 906, in gevent._gevent_cgreenlet.Greenlet.run
+  File "/home/kim/.local/lib/python3.8/site-packages/locust/web.py", line 349, in start_server
+    self.server.serve_forever()
+  File "/home/kim/.local/lib/python3.8/site-packages/gevent/baseserver.py", line 398, in serve_forever
+    self.start()
+  File "/home/kim/.local/lib/python3.8/site-packages/gevent/baseserver.py", line 336, in start
+    self.init_socket()
+  File "/home/kim/.local/lib/python3.8/site-packages/gevent/pywsgi.py", line 1545, in init_socket
+    StreamServer.init_socket(self)
+  File "/home/kim/.local/lib/python3.8/site-packages/gevent/server.py", line 180, in init_socket
+    self.socket = self.get_listener(self.address, self.backlog, self.family)
+  File "/home/kim/.local/lib/python3.8/site-packages/gevent/server.py", line 192, in get_listener
+    return _tcp_listener(address, backlog=backlog, reuse_addr=cls.reuse_addr, family=family)
+  File "/home/kim/.local/lib/python3.8/site-packages/gevent/server.py", line 288, in _tcp_listener
+    sock.bind(address)
+  File "/home/kim/.local/lib/python3.8/site-packages/gevent/_socketcommon.py", line 563, in bind
+    return self._sock.bind(address)
+OSError: [Errno 98] Address already in use: ('', 8089)
+[2021-08-20 12:13:29,912] Kurobokkusu/CRITICAL/locust.web: Unhandled exception in greenlet: <Greenlet at 0x7fa46b626590: <bound method WebUI.start_server of <locust.web.WebUI object at 0x7fa46b58fee0>>>
+Traceback (most recent call last):
+  File "src/gevent/greenlet.py", line 906, in gevent._gevent_cgreenlet.Greenlet.run
+  File "/home/kim/.local/lib/python3.8/site-packages/locust/web.py", line 349, in start_server
+    self.server.serve_forever()
+  File "/home/kim/.local/lib/python3.8/site-packages/gevent/baseserver.py", line 398, in serve_forever
+    self.start()
+  File "/home/kim/.local/lib/python3.8/site-packages/gevent/baseserver.py", line 336, in start
+    self.init_socket()
+  File "/home/kim/.local/lib/python3.8/site-packages/gevent/pywsgi.py", line 1545, in init_socket
+    StreamServer.init_socket(self)
+  File "/home/kim/.local/lib/python3.8/site-packages/gevent/server.py", line 180, in init_socket
+    self.socket = self.get_listener(self.address, self.backlog, self.family)
+  File "/home/kim/.local/lib/python3.8/site-packages/gevent/server.py", line 192, in get_listener
+    return _tcp_listener(address, backlog=backlog, reuse_addr=cls.reuse_addr, family=family)
+  File "/home/kim/.local/lib/python3.8/site-packages/gevent/server.py", line 288, in _tcp_listener
+    sock.bind(address)
+  File "/home/kim/.local/lib/python3.8/site-packages/gevent/_socketcommon.py", line 563, in bind
+    return self._sock.bind(address)
+OSError: [Errno 98] Address already in use: ('', 8089)

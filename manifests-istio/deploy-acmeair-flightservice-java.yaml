@@ -1,0 +1,125 @@
+###### Flight Service ######
+apiVersion: v1
+kind: Service
+metadata:
+  name: flight
+  labels:
+    app: flight
+spec:
+  ports:
+    - port: 9080
+      name: http
+  selector:
+    app: flight
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flight-v1
+  labels:
+    app: flight
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flight
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: flight
+        version: v1
+    spec:
+      containers:
+        - name: flight
+          image: komljen/acmeair-flightservice-java:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9080
+          env:
+            - name: MONGO_HOST
+              value: flight-db
+            - name: USERNAME
+              value: admin
+            - name: PASSWORD
+              value: password
+            - name: SECURE_SERVICE_CALLS
+              value: 'false'
+---
+##### Flight Database #####
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    service: flight-db
+    app: flight-db
+  name: flight-db
+spec:
+  ports:
+  - name: "27017"
+    port: 27017
+    protocol: TCP
+    targetPort: 27017
+  selector:
+    service: flight-db
+    app: flight-db
+status:
+  loadBalancer: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: flight-db-v1
+  labels:
+    app: flight-db
+    version: v1
+spec:
+  replicas: 1
+  strategy: {}
+  selector:
+    matchLabels:
+      app: flight-db
+      version: v1
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        service: flight-db
+        app: flight-db
+        version: v1
+    spec:
+      containers:
+      - image: mongo
+        name: flight-db
+        ports:
+        - containerPort: 27017
+          protocol: TCP
+        resources: {}
+      restartPolicy: Always
+status: {}
+---
+###################################################################
+# Virtual Services
+###################################################################
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: acmeair
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - default-http-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /flight
+    route:
+    - destination:
+        port:
+          number: 9080
+        host: flight
+---
